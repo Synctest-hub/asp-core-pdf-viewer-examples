@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="width:100%;height:600px">
+    <button id="loadPDF Viewer">Load PDF Viewer</button>
+    <div id="pdfViewer" style="height: 100%;width: 100%;"></div>
+</div>
+
+<script>
+
+    document.getElementById("loadPDF Viewer").addEventListener('click', function () {
+        $.ajax({
+            url: 'https://localhost:44327/pdfviewer/GetPdfDocument',
+            type: "GET",
+            success: function (data) {
+                var viewer = new ej.pdfviewer.PdfViewer({
+                    serviceUrl: "https://localhost:44327/pdfviewer",
+                    documentPath: data,
+                });
+                viewer.appendTo("#pdfViewer");
+            }
+        });
+    });
+
+</script>
