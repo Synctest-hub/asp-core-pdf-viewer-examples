@@ -3,7 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantiatePDFviewer", "InstantiatePDFviewer\InstantiatePDFviewer.csproj", "{812C83CD-4F81-49CF-8593-227999A1B09F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantiatePDFviewer", "InstantiatePDFviewer\InstantiatePDFviewer.csproj", "{11412A5A-739B-4129-A0A7-2670EE1C4577}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,5 +22,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9952778-C0E1-4547-A2E5-3A7E69B402A8}
+
 	EndGlobalSection
 EndGlobal
