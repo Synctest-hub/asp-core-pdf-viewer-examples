@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\PdfViewerWebService_5.0.props" />
-</Project>
