@@ -1,0 +1,26 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" serviceUrl="/Index" documentLoad="documentLoaded" documentPath="Data/PDF_Succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
+
+<style>
+    #pdfviewer {
+        display: block;
+    }
+</style>
+
+<script type="text/javascript">
+
+    function documentLoaded(args) {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        pdfViewer.signatureFieldSettings.signatureDialogSettings = { displayMode: 1, hideSaveSignature: true };
+    };
+
+
+</script>
