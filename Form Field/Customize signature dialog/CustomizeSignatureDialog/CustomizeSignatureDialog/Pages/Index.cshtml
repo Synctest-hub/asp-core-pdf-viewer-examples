@@ -1,0 +1,35 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <ejs-pdfviewer id="pdfviewer" style="height:100%" serviceUrl="/Index" documentLoad="documentLoaded" documentPath="Data/FormDesigner.pdf">
+    </ejs-pdfviewer>
+</div>
+
+
+<style>
+    #pdfviewer {
+        display: block;
+    }
+</style>
+
+<script type="text/javascript">
+    function documentLoaded(args) {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        pdfViewer.signatureFieldSettings.signatureDialogSettings = { 
+            displayMode: 1,
+            hideTypeSelection: true, // hide the signature field type selection dialogue
+            hideUploadSignature: true, // hide the upload signature dialogue
+            hideSaveSignature: true // hide the save signature dialogue        
+        };
+        pdfViewer.initialFieldSettings.initialDialogSettings = {
+                displayMode: 1,
+                hideTypeSelection: true, // hide the initial field type selection dialogue
+                hideUploadSignature: true, // hide the upload initial dialogue
+                hideSaveSignature: true // hide the save initial dialogue
+        };
+    };
+</script>
