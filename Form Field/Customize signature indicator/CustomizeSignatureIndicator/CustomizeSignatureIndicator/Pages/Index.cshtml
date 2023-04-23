@@ -1,0 +1,41 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <ejs-pdfviewer id="pdfviewer" style="height:100%" serviceUrl="/Index" documentLoad="onload" documentPath="Data/FormDesigner.pdf">
+    </ejs-pdfviewer>
+</div>
+
+
+<style>
+    #pdfviewer {
+        display: block;
+    }
+</style>
+
+<script>
+    window.onload = function () {
+        var pdfviewer = document.getElementById('pdfviewer').ej2_instances[0];
+        pdfviewer.signatureFieldSettings.signatureIndicatorSettings = {
+            opacity: 1,
+            backgroundColor: 'orange',
+            width: 19,
+            height: 10,
+            fontSize: 12,
+            text: "Your Text Here",
+            color: 'blue'
+        };
+        pdfviewer.initialFieldSettings.initialIndicatorSettings = {
+            opacity: 1,
+            backgroundColor: 'orange',
+            width: 19,
+            height: 10,
+            fontSize: 12,
+            text: "Your Text Here",
+            color: 'blue'
+        };
+    }
+</script>
