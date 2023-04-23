@@ -1,0 +1,30 @@
+﻿@page "{handler?}"
+@using Syncfusion.EJ2.PdfViewer;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+}
+
+
+<br>
+<br>
+<button onclick="previous()">Previous signature field</button>
+<button onclick="next()">Next signature field</button>
+<ejs-pdfviewer id="pdfviewer" style="height:100%" serviceUrl="/Index" documentPath="Data/samplePdf.pdf" zoomMode="FitToPage"></ejs-pdfviewer>
+
+<script>
+
+    function previous() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.formFieldsModule.previousField();
+    }
+
+    function next() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.formFieldsModule.nextField();
+    }
+
+
+
+</script>
