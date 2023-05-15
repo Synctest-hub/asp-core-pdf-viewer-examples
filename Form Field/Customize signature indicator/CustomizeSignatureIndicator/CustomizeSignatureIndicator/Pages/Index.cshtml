@@ -21,22 +21,22 @@
 <script>
     window.onload = function () {
         var pdfviewer = document.getElementById('pdfviewer').ej2_instances[0];
-        pdfviewer.signatureFieldSettings.signatureIndicatorSettings = {
+    pdfviewer.signatureFieldSettings.signatureIndicatorSettings = {
             opacity: 1,
-            backgroundColor: 'orange',
-            width: 19,
+            backgroundColor: 'cyan',
+            width: 50,
             height: 10,
-            fontSize: 12,
-            text: "Your Text Here",
+            fontSize: 15,
+            text: "Signature Indicator",
             color: 'blue'
         };
         pdfviewer.initialFieldSettings.initialIndicatorSettings = {
             opacity: 1,
-            backgroundColor: 'orange',
+            backgroundColor: 'yellow',
             width: 19,
-            height: 10,
-            fontSize: 12,
-            text: "Your Text Here",
+            height: 5,
+            fontSize: 5,
+            text: "Initial Indicator",
             color: 'blue'
         };
     }

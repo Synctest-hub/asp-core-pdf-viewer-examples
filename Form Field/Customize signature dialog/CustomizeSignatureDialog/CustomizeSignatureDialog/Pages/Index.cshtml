@@ -19,17 +19,17 @@
 <script type="text/javascript">
     function documentLoaded(args) {
         var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
-        pdfViewer.signatureFieldSettings.signatureDialogSettings = { 
+        pdfViewer.signatureFieldSettings.signatureDialogSettings = {
             displayMode: 1,
-            hideTypeSelection: true, // hide the signature field type selection dialogue
-            hideUploadSignature: true, // hide the upload signature dialogue
-            hideSaveSignature: true // hide the save signature dialogue        
+            hideTypeSelection: true, // hides the typed signature tab
+            hideUploadSignature: true, // hides the upload signature tab
+            hideSaveSignature: true // hides the save signature option
         };
         pdfViewer.initialFieldSettings.initialDialogSettings = {
-                displayMode: 1,
-                hideTypeSelection: true, // hide the initial field type selection dialogue
-                hideUploadSignature: true, // hide the upload initial dialogue
-                hideSaveSignature: true // hide the save initial dialogue
+            displayMode: 1,
+            hideTypeSelection: true, // hides the typed initial tab
+            hideUploadSignature: true, // hides the upload initial option
+            hideSaveSignature: true // hides the save initial option
         };
     };
 </script>
