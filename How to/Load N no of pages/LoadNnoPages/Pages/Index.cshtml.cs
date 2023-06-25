@@ -252,5 +252,6 @@ namespace LoadNnoPages.Pages
         public string documentLiveCount { get; set; }
         public string annotationDataFormat { get; set; }
         public string importedData { get; set; }
+        public double InitialRenderPages { get; set; }
     }
 }
