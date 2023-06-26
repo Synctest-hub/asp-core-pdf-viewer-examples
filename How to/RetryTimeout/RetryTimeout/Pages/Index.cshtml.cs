@@ -252,7 +252,5 @@ namespace RetryTimeout.Pages
         public string documentLiveCount { get; set; }
         public string annotationDataFormat { get; set; }
         public string importedData { get; set; }
-        public double RetryTimeout { get; set; }
-        public double RetryCount { get; set; }
     }
 }
