@@ -1,0 +1,13 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    double RetryTimeout = 10;
+    double RetryCount = 5;
+}
+
+
+<div class="text-center">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" serviceUrl="/Index" retryTimeout="@RetryTimeout" retryCount="@RetryCount" documentPath="Data/PDF_Succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
