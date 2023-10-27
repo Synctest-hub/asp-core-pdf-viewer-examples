@@ -4,6 +4,7 @@ using Syncfusion.EJ2.PdfViewer;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection;
+using System.Net;
 
 namespace LoadNnoPages.Pages
 {
@@ -38,7 +39,15 @@ namespace LoadNnoPages.Pages
                     }
                     else
                     {
-                        return this.Content(jsonObject["document"] + " is not found");
+                        string fileName = jsonObject["document"].Split(new string[] { "://" }, StringSplitOptions.None)[0];
+                        if (fileName == "http" || fileName == "https")
+                        {
+                            WebClient WebClient = new WebClient();
+                            byte[] pdfDoc = WebClient.DownloadData(jsonObject["document"]);
+                            stream = new MemoryStream(pdfDoc);
+                        }
+                        else
+                            return this.Content(jsonObject["document"] + " is not found");
                     }
                 }
                 else
@@ -54,7 +63,8 @@ namespace LoadNnoPages.Pages
         public Dictionary<string, string> JsonConverterstring(jsonObjects results)
         {
             Dictionary<string, object> resultObjects = new Dictionary<string, object>();
-            resultObjects = results.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).ToDictionary(prop => prop.Name, prop => prop.GetValue(results, null));
+            resultObjects = results.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .ToDictionary(prop => prop.Name, prop => prop.GetValue(results, null));
             var emptyObjects = (from kv in resultObjects
                                 where kv.Value != null
                                 select kv).ToDictionary(kv => kv.Key, kv => kv.Value);
