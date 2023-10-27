@@ -1,0 +1,20 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<button type="button" onclick="openThumbnail()">Open Thumbnail Pane</button>
+
+<div class="text-center">
+    <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" documentLoad="openThumbnail">
+    </ejs-pdfviewer>
+</div>
+
+<script>
+    function openThumbnail() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        pdfViewer.thumbnailViewModule.openThumbnailPane();
+    }
+</script>
