@@ -1,0 +1,13 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div style="width:100%;height:600px">
+    <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
+    <ejs-pdfviewer id="pdfviewer"
+                   documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+                   enableBookmark="true">
+    </ejs-pdfviewer>
+</div>
