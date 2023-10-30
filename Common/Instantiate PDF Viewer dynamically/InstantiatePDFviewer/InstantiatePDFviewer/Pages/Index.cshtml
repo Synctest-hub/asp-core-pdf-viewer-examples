@@ -13,11 +13,11 @@
 
     document.getElementById("loadPDF Viewer").addEventListener('click', function () {
         $.ajax({
-            url: 'https://localhost:44327/pdfviewer/GetPdfDocument',
+            url: 'https://localhost:44396/pdfviewer/GetPdfDocument',
             type: "GET",
             success: function (data) {
                 var viewer = new ej.pdfviewer.PdfViewer({
-                    serviceUrl: "https://localhost:44327/pdfviewer",
+                    serviceUrl: "https://localhost:44396/pdfviewer",
                     documentPath: data,
                 });
                 viewer.appendTo("#pdfViewer");

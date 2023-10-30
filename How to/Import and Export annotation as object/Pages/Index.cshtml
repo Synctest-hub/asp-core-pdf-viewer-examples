@@ -1,0 +1,35 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<button type="button" onclick="exportAnnotation()">Export Annoatation</button>
+<button type="button" onclick="importAnnotation()">Import Annoatation</button>
+
+<div style="width:100%;height:600px">
+
+    <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
+    <ejs-pdfviewer id="pdfviewer"
+                   style="height:600px"
+                   documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
+
+
+<script type ="text/javascript">
+
+    var exportObject;
+    //Export annotation as object.
+    function exportAnnotation() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.exportAnnotationsAsObject().then(function (value) {
+            exportObject = value
+        });
+    }
+    //Import annotation that are exported as object.
+    function importAnnotation() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.importAnnotation(JSON.parse(exportObject));
+    }
+</script>

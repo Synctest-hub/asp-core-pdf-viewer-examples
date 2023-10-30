@@ -1,0 +1,23 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<button type="button" onclick="unload()">Unload Document</button>
+
+<div style="width:100%;height:600px">
+      <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
+    <ejs-pdfviewer 
+            id="pdfviewer"
+            documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
+
+<script>
+    // Unload the PDF document.
+    function unload() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.unload();
+    }
+</script>
