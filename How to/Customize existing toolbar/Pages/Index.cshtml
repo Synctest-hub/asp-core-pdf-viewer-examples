@@ -4,9 +4,9 @@
     ViewData["Title"] = "Home page";
 }
 
-<div style="width:100%;height:600px">
+<div>
     <ejs-pdfviewer id="pdfviewer"
-                   style="height:600px"
+                   style="width:1350px;height:100%"
                    documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
                    resourceUrl='https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib'
                    toolbarClick="toolbarClick">
@@ -16,31 +16,42 @@
 <script type="text/javascript">
     window.onload = function () {
         var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
-        var toolItem = {
+        var toolItem1 = {
             prefixIcon: 'e-icons e-paste',
             id: 'print',
             tooltipText: 'Custom toolbar item',
             align: 'left'
         };
+        var toolItem2 = {
+            id: 'download',
+            text: 'Save',
+            tooltipText: 'Custom toolbar item',
+            align: 'right'
+        };
+        var LanguageList = ['Typescript', 'Javascript', 'Angular', 'C#', 'C', 'Python'];
+        var toolItem3 = {
+            type: 'Input',
+            tooltipText: 'Language List',
+            cssClass: 'percentage',
+            align: 'Left',
+            id: 'dropdown',
+            template: new ej.dropdowns.ComboBox({ width: 100, value: 'TypeScript', dataSource: LanguageList, popupWidth: 85, showClearButton: false, readonly: false })
+        };
+        var toolItem4 = {
+            type: 'Input',
+            tooltipText: 'Text',
+            align: 'Right',
+            cssClass: 'find',
+            id: 'textbox',
+            template: new ej.inputs.TextBox({ width: 125, placeholder: 'Type Here', created: onCreate })
+        };
         pdfViewer.toolbarSettings = {
             showTooltip: true,
-            toolbarItems: [
-                toolItem,
-                "OpenOption",
-                "PageNavigationTool",
-                "MagnificationTool",
-                "PanTool",
-                "SelectionTool",
-                "SearchOption",
-                "PrintOption",
-                "DownloadOption",
-                "UndoRedoTool",
-                "AnnotationEditTool",
-                "FormDesignerEditTool",
-                "CommentTool",
-                "SubmitForm"
-            ]
+            toolbarItems: [toolItem1, toolItem2, 'OpenOption', 'PageNavigationTool', 'MagnificationTool', toolItem3, 'PanTool', 'SelectionTool', 'SearchOption', 'PrintOption', 'DownloadOption', 'UndoRedoTool', 'AnnotationEditTool', 'FormDesignerEditTool', toolItem4, 'CommentTool', 'SubmitForm']
         };
+        function onCreate() {
+            this.addIcon('prepend', 'e-icons e-search');
+        }
     }
 
     // Define the toolbarClick event handler
@@ -53,4 +64,5 @@
             pdfViewer.download();
         }
     }
+
 </script>
