@@ -5,9 +5,25 @@
 }
 
 <div style="width:100%;height:600px">
+    <button type="button" onclick="openBookmark()">Open Bookmark Pane</button>
+    <button type="button" onclick="closeBookmark()">Close Bookmark Pane</button>
     <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
     <ejs-pdfviewer id="pdfviewer"
                    documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
-                   enableBookmark="true">
+                   resourceUrl="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib"
+                   style="height:641px;">
     </ejs-pdfviewer>
 </div>
+
+<script type="text/javascript">
+    function openBookmark() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Open Bookmark pane
+        pdfViewer.bookmarkViewModule.openBookmarkPane();
+    }
+    function closeBookmark() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Open Bookmark pane
+        pdfViewer.bookmarkViewModule.closeBookmarkPane();
+    }
+</script>

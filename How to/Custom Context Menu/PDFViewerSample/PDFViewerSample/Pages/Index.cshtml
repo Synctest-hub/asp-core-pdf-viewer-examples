@@ -4,18 +4,19 @@
     ViewData["Title"] = "Home page";
 }
 <tr>
-    <td class="left-side-pdfviewer">Hide Default Context Menu</td>
+    <td>Hide Default Context Menu</td>
     <td>
-        <ejs-checkbox id="enable" cssClass="multiline" checked="false" change="contextmenuHelper"></ejs-checkbox>
+        <ejs-checkbox id="enable" checked="false" change="contextmenuHelper"></ejs-checkbox>
     </td>
 </tr>
 <tr>
-    <td class="left-side-pdfviewer">Add Custom option at bottom</td>
+    <td>Add Custom option at bottom</td>
     <td>
-        <ejs-checkbox id="position" cssClass="multiline" checked="false" change="contextmenuHelper"></ejs-checkbox>
+        <ejs-checkbox id="position" checked="false" change="contextmenuHelper"></ejs-checkbox>
     </td>
 </tr>
 <div class="text-center">
+    <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
     <ejs-pdfviewer id="pdfviewer" style="height:600px" 
                    documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" 
                    resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib" 
@@ -31,7 +32,7 @@
         {
             text: 'Search In Google',
             id: 'search_in_google',
-            iconCss: 'e-icons e-de-ctnr-find'
+            iconCss: 'e-icons e-search'
         },
         {
             text: 'Lock Annotation',
@@ -129,27 +130,25 @@
 
     function lockAnnotations(args) {
         var pdfviewer = document.getElementById('pdfviewer').ej2_instances[0];
-        var selectedAnnotations = pdfviewer.selectedItems.annotations;
-        for (var i = 0; i < selectedAnnotations.length; i++) {
-            var annotation = selectedAnnotations[i];
-            if (annotation && annotation.annotationSettings) {
-                annotation.annotationSettings.isLock = true;
-                pdfviewer.annotationModule.editAnnotation(annotation);
-                args.cancel = false;
+        for (var i = 0; i < pdfviewer.annotationCollection.length; i++) {
+            if (pdfviewer.annotationCollection[i].uniqueKey === pdfviewer.selectedItems.annotations[0].id) {
+                pdfviewer.annotationCollection[i].annotationSettings.isLock = true;
+                pdfviewer.annotationCollection[i].isCommentLock = true;
+                pdfviewer.annotation.editAnnotation(pdfviewer.annotationCollection[i]);
             }
+            args.cancel = false;
         }
     }
 
     function unlockAnnotations(args) {
         var pdfviewer = document.getElementById('pdfviewer').ej2_instances[0];
-        var selectedAnnotations = pdfviewer.selectedItems.annotations;
-        for (var i = 0; i < selectedAnnotations.length; i++) {
-            var annotation = selectedAnnotations[i];
-            if (annotation && annotation.annotationSettings) {
-                annotation.annotationSettings.isLock = false;
-                pdfviewer.annotationModule.editAnnotation(annotation);
-                args.cancel = false;
+        for (var i = 0; i < pdfviewer.annotationCollection.length; i++) {
+            if (pdfviewer.annotationCollection[i].uniqueKey === pdfviewer.selectedItems.annotations[0].id) {
+                pdfviewer.annotationCollection[i].annotationSettings.isLock = false;
+                pdfviewer.annotationCollection[i].isCommentLock = false;
+                pdfviewer.annotation.editAnnotation(pdfviewer.annotationCollection[i]);
             }
+            args.cancel = false;
         }
     }
 

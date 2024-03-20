@@ -8,18 +8,20 @@
     <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
     <ejs-pdfviewer id="pdfviewer"
                    documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
-                   documentloaded="documentloaded">
+                   resourceUrl="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib"
+                   documentLoad="documentloaded"
+                   style="height:641px;">
     </ejs-pdfviewer>
 </div>
 <script type="text/javascript">
-
+    var isInitialLoading = true;
     function documentloaded(args) {
-        var isInitialLoading = true;
         var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
         if (isInitialLoading) {
             pdfViewer.isPageOrganizerOpen = true;
             isInitialLoading = false;
-        } else {
+        }
+        else {
             pdfViewer.isPageOrganizerOpen = false;
         }
     }
