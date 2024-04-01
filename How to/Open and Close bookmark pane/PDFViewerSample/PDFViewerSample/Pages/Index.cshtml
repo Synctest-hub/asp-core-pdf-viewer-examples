@@ -1,0 +1,24 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<button type="button" onclick="openBookmark()">Open Bookmark Pane</button>
+<button type="button" onclick="closeBookmark()">Close Bookmark Pane</button>
+
+<div class="text-center">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    function openBookmark() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.bookmarkViewModule.openBookmarkPane();
+    }
+    function closeBookmark() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.bookmarkViewModule.closeBookmarkPane();
+    }
+</script>

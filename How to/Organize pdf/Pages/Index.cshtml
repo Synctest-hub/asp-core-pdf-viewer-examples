@@ -1,0 +1,28 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div style="width:100%;height:600px">
+    <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
+    <ejs-pdfviewer id="pdfviewer"
+                   documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+                   resourceUrl="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib"
+                   documentLoad="documentloaded"
+                   style="height:641px;">
+    </ejs-pdfviewer>
+</div>
+<script type="text/javascript">
+    var isInitialLoading = true;
+    function documentloaded(args) {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        if (isInitialLoading) {
+            pdfViewer.isPageOrganizerOpen = true;
+            isInitialLoading = false;
+        }
+        else {
+            pdfViewer.isPageOrganizerOpen = false;
+        }
+    }
+</script>
