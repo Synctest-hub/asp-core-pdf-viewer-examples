@@ -5,11 +5,17 @@
 }
 
 <div style="width:100%;height:600px">
+    <button type="button" onclick="openPageOrganizer()">Open PageOrganizer Pane</button>
+    <button type="button" onclick="closePageOrganizer()">Close PageOrganizer Pane</button>
     <!-- To configure the server-backed PDF Viewer, include the "serviceUrl='/Index'" attribute -->
     <ejs-pdfviewer id="pdfviewer"
                    documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
                    resourceUrl="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib"
                    documentLoad="documentloaded"
+                   enablePageOrganizer=false
+                   isPageOrganizerOpen=false
+                   pageOrganizerSettings= pageOrganizerSettings="@(new Syncfusion.EJ2.PdfViewer.PdfViewerPageOrganizerSettings
+                   {canDelete: true, canInsert: true, canRotate: true, canCopy: true, canRearrange: true })"
                    style="height:641px;">
     </ejs-pdfviewer>
 </div>
@@ -24,5 +30,16 @@
         else {
             pdfViewer.isPageOrganizerOpen = false;
         }
+    },
+    function openPageOrganizer() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Close Page Organizer panel.
+        pdfViewer.pageOrganizer.openPageOrganizer();
+    },
+    function closePageOrganizer() {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Close Page Organizer panel.
+        pdfViewer.pageOrganizer.closePageOrganizer(););
     }
+
 </script>

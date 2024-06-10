@@ -1,0 +1,17 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px"  documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" downloadStart="downloadStart" resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    function downloadStart(args) { 
+        // Your custom logic here
+        args.cancel = true; // Prevent download action
+    };
+</script>

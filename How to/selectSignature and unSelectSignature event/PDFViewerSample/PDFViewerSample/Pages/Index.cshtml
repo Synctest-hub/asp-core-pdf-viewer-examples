@@ -1,0 +1,19 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib" signatureSelect="signatureSelect" signatureUnselect="signatureUnselect">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    function signatureSelect(args) { 
+        console.log('Signature selected:', args);
+    }
+    function signatureUnselect(args) {
+        console.log('Signature selected:', args);
+    };
+</script>
