@@ -4,16 +4,16 @@
     ViewData["Title"] = "Home page";
 }
 
-<button type="button" onclick="addAnnotation()">Add HandWritten signature Programmatically</button>
+<button type="button" onclick="addAnnotations()">Add HandWritten signature Programmatically</button>
 
 <div class="text-center">
-    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib">
+    <ejs-pdfviewer id="pdfviewer" style="height:641px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" resourceUrl="https://cdn.syncfusion.com/ej2/27.1.48/dist/ej2-pdfviewer-lib">
     </ejs-pdfviewer>
 </div>
 
 <script type="text/javascript">
-    function addAnnotation() {
-        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+    function addAnnotations() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
         viewer.annotation.addAnnotation("HandWrittenSignature", {
             offset: { x: 220, y: 180 },
             pageNumber: 1,
