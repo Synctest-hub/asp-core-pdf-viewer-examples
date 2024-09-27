@@ -81,6 +81,63 @@ namespace PDFViewerSample.Pages
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
 
+         public IActionResult RenderPdfTexts([FromBody] Dictionary<string, string> jsonObject)
+        {
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            object jsonResult = pdfviewer.GetDocumentText(jsonObject);
+            return Content(JsonConvert.SerializeObject(jsonResult));
+        }
+
+         public IActionResult ValidatePassword([FromBody] Dictionary<string, string> jsonObject)
+        {
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            MemoryStream stream = new MemoryStream();
+            object jsonResult = new object();
+            if (jsonObject != null && jsonObject.ContainsKey("document"))
+            {
+                if (bool.Parse(jsonObject["isFileName"]))
+                {
+                    string documentPath = GetDocumentPath(jsonObject["document"]);
+                    if (!string.IsNullOrEmpty(documentPath))
+                    {
+                        byte[] bytes = System.IO.File.ReadAllBytes(documentPath);
+                        stream = new MemoryStream(bytes);
+                    }
+                    else
+                    {
+                        string fileName = jsonObject["document"].Split(new string[] { "://" }, StringSplitOptions.None)[0];
+
+                        if (fileName == "http" || fileName == "https")
+                        {
+                            WebClient WebClient = new WebClient();
+                            byte[] pdfDoc = WebClient.DownloadData(jsonObject["document"]);
+                            stream = new MemoryStream(pdfDoc);
+                        }
+
+                        else
+                        {
+                            return this.Content(jsonObject["document"] + " is not found");
+                        }
+                    }
+                }
+                else
+                {
+                    byte[] bytes = Convert.FromBase64String(jsonObject["document"]);
+                    stream = new MemoryStream(bytes);
+                }
+            }
+            string password = null;
+            if (jsonObject.ContainsKey("password"))
+            {
+                password = jsonObject["password"];
+            }
+            var result = pdfviewer.Load(stream, password);
+
+            return Content(JsonConvert.SerializeObject(result));
+        }
+
+
         //Post action for unloading and disposing the PDF document resources
         public IActionResult OnPostUnload([FromBody] jsonObjects responseData)
         {
