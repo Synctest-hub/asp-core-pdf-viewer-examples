@@ -1,0 +1,34 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="text-center">
+    <button id="getBase64">Get Base64</button>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" resourceUrl="https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+
+        // Add an event listener to the button to get Base64 string of the loaded document
+        document.getElementById('getBase64').addEventListener('click', function () {
+            base64ofloadedDocument();  // Call the function to get the Base64 string
+        });
+
+        // Function to get Base64 of the loaded document
+        function base64ofloadedDocument() {
+            pdfViewer.saveAsBlob().then(function (value) {
+                var data = value;
+                var reader = new FileReader();
+                reader.readAsDataURL(data);
+                reader.onload = function () {
+                    var base64data = reader.result;
+                    console.log(base64data);
+                };
+            });
+        }
+    });
+</script>
