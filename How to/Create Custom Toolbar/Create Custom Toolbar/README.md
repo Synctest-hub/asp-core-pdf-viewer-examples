@@ -2,7 +2,7 @@
 This example shows how to create a custom toolbar sample in PDF Viewer application.
 
 ## Project pre-requisites
-One of the the following .NET SDK is required to develop and run the Syncfusion UI controls for ASP.NET Core application.
+One of the the following .NET SDK is required to develop and run the Syncfusion&reg; UI controls for ASP.NET Core application.
 
 * NET 6.0 SDK
 * NET 5.0 SDK
