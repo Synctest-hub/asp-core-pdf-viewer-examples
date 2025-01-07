@@ -4,6 +4,8 @@
     ViewData["Title"] = "Home page";
 }
 
+<button type="button" onclick="exportAsJson()">Export Annoatation As Json</button>
+<button type="button" onclick="exportAsXfdf()">Export Annoatation As Xfdf</button>
 <button type="button" onclick="exportAnnotation()">Export Annoatation</button>
 <button type="button" onclick="importAnnotation()">Import Annoatation</button>
 
@@ -20,6 +22,18 @@
 <script type ="text/javascript">
 
     var exportObject;
+
+    //Export annotation as Json
+    function exportAsJson(){
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.exportAnnotation('Json');
+    }
+    //Export annotation as Xfdf
+    function exportAsXfdf(){
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.exportAnnotation('Xfdf');
+    }
+
     //Export annotation as object.
     function exportAnnotation() {
         var viewer = document.getElementById('pdfviewer').ej2_instances[0];
