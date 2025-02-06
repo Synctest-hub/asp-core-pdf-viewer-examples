@@ -2,10 +2,14 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var originUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+    var document = originUrl + "/PDF_Succinctly.pdf";
+    var resourceUrl = originUrl + "/ej2-pdfviewer-lib";
 }
 
+
 <div>
-    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath="https://localhost:44311/PDF_Succinctly.pdf" resourceUrl="https://localhost:44311/ej2-pdfviewer-lib">
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" documentPath=@document resourceUrl=@resourceUrl>
     </ejs-pdfviewer>
 </div>
 
