@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+<br />
+<div class="container">
+    <button onclick="LoadDocument()">LoadDocument</button>
+    <ejs-pdfviewer id="pdfviewer" style="height:641px" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"></ejs-pdfviewer>
+</div>
+<script>
+    function LoadDocument() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        var xhr = new XMLHttpRequest();
+        var fileName = "FormDesigner.pdf";
+        xhr.open('GET', `/PdfViewer/GetPDFByte?fileName=${fileName}`, true);
+        xhr.responseType = "arraybuffer";
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var blob = new Blob([xhr.response], { type: 'application/pdf' });
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var base64String = reader.result;
+                    viewer.load(base64String);
+                };
+                reader.readAsDataURL(blob);
+            }
+        };
+        xhr.send();
+    }
+
+</script>
+
+<style>
+    #pdfviewer {
+        display: block;
+    }
+</style>

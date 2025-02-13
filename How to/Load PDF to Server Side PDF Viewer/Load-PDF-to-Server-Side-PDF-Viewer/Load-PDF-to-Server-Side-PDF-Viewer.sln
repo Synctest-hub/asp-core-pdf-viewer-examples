@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Load-PDF-to-Server-Side-PDF-Viewer", "Load-PDF-to-Server-Side-PDF-Viewer.csproj", "{26C6026E-0610-419D-BCEB-DED8AC494AA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26C6026E-0610-419D-BCEB-DED8AC494AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C6026E-0610-419D-BCEB-DED8AC494AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C6026E-0610-419D-BCEB-DED8AC494AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C6026E-0610-419D-BCEB-DED8AC494AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1FEF192-1C54-4ADC-B38A-8179031CB211}
+	EndGlobalSection
+EndGlobal
