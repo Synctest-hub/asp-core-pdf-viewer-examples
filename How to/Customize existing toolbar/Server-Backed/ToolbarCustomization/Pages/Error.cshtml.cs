@@ -24,4 +24,5 @@ namespace PDFViewerSample.Pages
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
+
 }

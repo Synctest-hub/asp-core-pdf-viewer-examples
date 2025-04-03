@@ -1,0 +1,42 @@
+﻿@page "{handler?}"
+@model IndexModel
+@using Syncfusion.EJ2.PdfViewer
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Home page";
+    CustomToolbarItems customToolbarItems = new CustomToolbarItems();
+    var toolItem1 = new { id = "submit_form", text = "Submit Form", tooltipText = "Custom toolbar item", align = "Center", cssClass = "custom_button" };
+    customToolbarItems.ToolbarItems = new List<object> { toolItem1, "OpenOption", "PageNavigationTool", "MagnificationTool", "PanTool", "SelectionTool", "SearchOption", "PrintOption", "DownloadOption", "UndoRedoTool", "AnnotationEditTool", "FormDesignerEditTool", "CommentTool" };
+    PdfViewerToolbarSettings toolbarSettings = new PdfViewerToolbarSettings()
+            {
+                ShowTooltip = true,
+                ToolbarItems = customToolbarItems.ToolbarItems
+            };
+}
+
+<br>
+<br>
+<div>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px"
+                   serviceUrl="/Index"
+                   documentPath="https://cdn.syncfusion.com/content/pdf/form-designer.pdf"
+                   toolbarClick="toolbarClick"
+                   ToolbarSettings="toolbarSettings">
+
+    </ejs-pdfviewer>
+</div>
+
+<script>
+    function toolbarClick(args) {
+         var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+         if (args.item && args.item.id === 'submit_form') {
+             alert('Custom button clicked!');
+         }
+     }
+</script>
+
+<style>
+    .custom_button {
+        height: 100% !important;
+    }
+</style>
