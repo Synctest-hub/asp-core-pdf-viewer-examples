@@ -1,0 +1,30 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <button onclick="findText()">Find Text</button>
+    <button onclick="findTexts()">Find Multiple Texts</button>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" resourceUrl="https://cdn.syncfusion.com/ej2/29.1.33/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    function findText() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Search for a single text ('pdf') across all pages (case insensitive)
+        viewer.textSearchModule.findTextAsync('pdf', false).then(function (res) {
+            console.log(res);  // Log the search results
+        });
+    }
+
+    function findTexts() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        // Search for multiple texts (['pdf', 'the']) across all pages (case insensitive)
+        viewer.textSearchModule.findTextAsync(['pdf', 'the'], false).then(function (res) {
+            console.log(res);  // Log the search results
+        });
+    }
+</script>
