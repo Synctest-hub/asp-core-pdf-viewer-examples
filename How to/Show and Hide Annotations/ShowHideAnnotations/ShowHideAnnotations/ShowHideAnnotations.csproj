@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+       <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="*" />
+       <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Data\Annotations.pdf" />
+  </ItemGroup>
+
+</Project>
