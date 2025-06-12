@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Syncfusion.EJ2.PdfViewer;
 using Newtonsoft.Json;
@@ -246,7 +246,7 @@ namespace PDFViewerSample.Pages
         public string freeTextAnnotation { get; set; }
         public string signatureData { get; set; }
         public string fieldsData { get; set; }
-        public string FormDesigner { get; set; }
+        public string formDesigner { get; set; }
         public string inkSignatureData { get; set; }
         public bool hideEmptyDigitalSignatureFields { get; set; }
         public bool showDigitalSignatureAppearance { get; set; }
