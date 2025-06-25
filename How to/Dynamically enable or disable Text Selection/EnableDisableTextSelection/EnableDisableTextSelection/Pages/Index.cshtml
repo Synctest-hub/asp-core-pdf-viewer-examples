@@ -1,0 +1,24 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+   <button onclick="enableTextSelection()">Enable Text Selection</button>
+    <button onclick="disableTextSelection()">Disable Text Selection</button>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" resourceUrl="https://cdn.syncfusion.com/ej2/30.1.37/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" enableTextSelection="false">
+    </ejs-pdfviewer>
+</div>
+
+<script type="text/javascript">
+    // You can dynamically toggle text selection with JavaScript
+    function enableTextSelection() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.enableTextSelection = true;
+    }
+    function disableTextSelection() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.enableTextSelection = false;
+    }
+</script>
