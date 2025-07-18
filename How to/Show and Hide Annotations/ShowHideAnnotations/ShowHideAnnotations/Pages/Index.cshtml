@@ -1,4 +1,4 @@
-﻿@page "{handler?}"
+@page "{handler?}"
 @using ShowHideAnnotations.Pages
 @model IndexModel
 @{
@@ -6,55 +6,32 @@
 }
 
 <div class="text-center">
-    <button id="toggleBtn" onclick="toggleAnnotations()">Hide Annotations</button>
-    <ejs-pdfviewer id="pdfviewer" style="height:600px" serviceUrl="/Index" documentPath="">
+    <button id="hideBtn">Hide Annotations</button>
+    <button id="unhideBtn">Show Annotations</button>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" resourceUrl="https://cdn.syncfusion.com/ej2/30.1.37/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf">
     </ejs-pdfviewer>
 </div>
 
 <script type="text/javascript">
     var exportObject = null;
-    var annotationsVisible = true;
 
-    // Function to run when page loads
     document.addEventListener('DOMContentLoaded', function() {
-        // Get viewer instance
-        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        var pdfviewer = document.getElementById('pdfviewer').ej2_instances[0];
 
-        // Load the PDF document
-        if (viewer) {
-            viewer.documentPath="Data/Annotations.pdf";
-
-            // You can also add any initialization code here
-            console.log("PDF viewer initialized and document loading started");
-        }
-    });
-
-    function toggleAnnotations() {
-        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
-
-        if (annotationsVisible) {
-            // Hide annotations by exporting and deleting them
-            viewer.exportAnnotationsAsObject().then(function(value) {
+        function HideAnnotations() {
+            pdfviewer.exportAnnotationsAsObject().then(function(value) {
                 exportObject = value;
-
-                var count = viewer.annotationCollection.length;
-                for (var i = 0; i < count; i++) {
-                    // Always delete the first item as the collection shrinks
-                    viewer.annotationModule.deleteAnnotationById(viewer.annotationCollection[0].annotationId);
-                }
-
-                annotationsVisible = false;
-                document.getElementById('toggleBtn').textContent = 'Show Annotations';
+                pdfviewer.deleteAnnotations();
             });
-        } else {
-            // Restore annotations
-            if (exportObject) {
-                var exportAnnotObject = JSON.parse(exportObject);
-                viewer.importAnnotation(exportAnnotObject);
-            }
-
-            annotationsVisible = true;
-            document.getElementById('toggleBtn').textContent = 'Hide Annotations';
         }
-    }
+
+        function UnHideAnnotations() {
+            if (exportObject) {
+                pdfviewer.importAnnotation(JSON.parse(exportObject));
+            }
+        }
+
+        document.getElementById('hideBtn').addEventListener('click', HideAnnotations);
+        document.getElementById('unhideBtn').addEventListener('click', UnHideAnnotations);
+    });
 </script>

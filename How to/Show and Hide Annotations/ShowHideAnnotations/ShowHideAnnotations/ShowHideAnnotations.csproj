@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-       <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="*" />
-       <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="*" />
+       <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="30.1.40" />
+       <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="100.2.100" />
   </ItemGroup>
 
   <ItemGroup>
