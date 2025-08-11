@@ -1,0 +1,107 @@
+@page "{handler?}"
+@model IndexModel
+@{
+    // Set the page title for the browser tab
+    ViewData["Title"] = "Home page";
+    
+    // Build the base URL for the application using current request information
+    var originUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+    
+    // Define the default document path
+    var document = originUrl + "/PDF_Succinctly.pdf";
+    
+    // Set the resource URL for Syncfusion PDF Viewer library files
+    var resourceUrl = originUrl + "/ej2-pdfviewer-lib";
+}
+
+<div>
+    <h5>Select Document to View</h5>
+    <ul>
+        <li id="set" onclick="loadDocument1()"><a href="#">Document 1</a></li>
+        <li id="set" onclick="loadDocument2()"><a href="#">Document 2</a></li>
+        <li id="set" onclick="loadDocument3()"><a href="#">Document 3</a></li>
+    </ul>
+    <ejs-pdfviewer id="pdfviewer" style="height:600px" resourceUrl=@resourceUrl formFieldPropertiesChange="formFieldPropertiesChange" formFieldAdd="onFormFieldAdd">
+    </ejs-pdfviewer>
+</div>
+
+<script>
+    var originUrl = '@originUrl';
+    
+    function loadDocument1() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.load(originUrl + "/form-filling-document.pdf", "null");
+    }
+
+    function loadDocument2() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.load(originUrl + "/form-designer.pdf", "null");
+    }
+
+    function loadDocument3() {
+        var viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        viewer.load(originUrl + "/pdf-succinctly (5).pdf", "null");
+    }
+
+    function validateEmail(value) {
+        const emailRegex =  /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/; 
+        return emailRegex.test(value);
+    }
+
+    function validateNumber(value) {
+        const numberRegex = /^[0-9]+$/;
+        return numberRegex.test(value);
+    }
+
+    function validateDate(value) {
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        return dateRegex.test(value);
+    }
+
+    function onFormFieldAdd(event) {
+        console.log('New form field added:', event.field);
+
+        if (event.field.type === 'Text') {
+            event.field.placeholder = 'Enter text here...';
+        }
+    }
+
+    
+    function formFieldPropertiesChange(event) {
+        const viewer = document.getElementById('pdfviewer').ej2_instances[0];
+        const field = event.field;
+        const value = field.value;
+        let isValid = true;
+
+        // Remove '_content' from the field ID if it exists
+        const fieldIdWithoutContent = field.id.replace('_content', '');
+
+        // Find the matching field in the form field collection
+        const formFields = viewer.formFieldCollections;
+        const matchingField = formFields.find(f => f.id === fieldIdWithoutContent);
+
+        if (!matchingField) {
+            console.error(`Field with ID "${fieldIdWithoutContent}" not found in the form field collection.`);
+            return;
+        }
+
+        // Validate based on field name
+        if (matchingField.name.includes('My Email')) {
+            isValid = validateEmail(value);
+        } else if (matchingField.name.includes('My Phone')) {
+            isValid = validateNumber(value);
+        } else if (matchingField.name.includes('dob')) {
+            isValid = validateDate(value);
+        }
+
+        if (!isValid) {
+            // Update field properties to show invalid state (red border), keep the value as is
+            viewer.formDesigner.updateFormField(matchingField, { borderColor: 'red' });
+        } else {
+            // Reset to the default border color when valid input is entered
+            viewer.formDesigner.updateFormField(matchingField, { borderColor: '#2f2f2fff' });
+        }
+    }
+
+
+</script>
